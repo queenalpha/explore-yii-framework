@@ -8,7 +8,8 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
+
+<div class="container site-register">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to register:</p>

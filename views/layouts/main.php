@@ -40,7 +40,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Display Cars', 'url' => ['/car/index']],
+            ['label' => 'Display Cars', 'url' => ['/site/index']],
         ]
     ]);
     echo Nav::widget([
@@ -72,7 +72,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <main id="main" class="flex-shrink-0" role="main">
         <?= Alert::widget() ?>
         <?= $content ?>
-
 </main>
 
 <footer id="footer" class="mt-auto py-3 bg-light">
