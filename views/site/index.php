@@ -1,5 +1,10 @@
 <?php
 
+use yii\helpers\Html;
+use yii\widgets\ListView;
+
+/* @var $dataProvider yii\data\ActiveDataProvider 
+/* @var $mobils app\models\Mobil[] */
 /** @var yii\web\View $this */
 
 $this->title = 'Car Selling';
@@ -48,20 +53,21 @@ $this->title = 'Car Selling';
 
 <div class="container" id="display-car">
     <div class="row">
+    <?php foreach ($mobils as $mobil): ?>
         <div class="col-12 col-md-6 col-lg-3 mb-4">
             <div class="card shadow rounded-4 border-0">
                 <div class="position-relative">
                     <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top rounded-4" alt="">
                     <div class="position-absolute bottom-0 start-0 px-3 py-2 bg-dark text-white rounded-end">
-                        <span class="badge bg-secondary">Rp500.000.000</span>
+                        <span class="badge bg-secondary">Rp<?= Html::encode($mobil->harga) ?></span>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title">Mercedes-Benz</h5>
-                        <p class="card-text fst-italic">Tahun 2020</p>
+                        <h5 class="card-title"><?= Html::encode($mobil->nama_mobil) ?></h5>
+                        <p class="card-text fst-italic"><?= Html::encode($mobil->tahun) ?></p>
                     </div>
-                    <p class="card-text mb-1 fst-italic">Bekas</p>
+                    <p class="card-text mb-1 fst-italic"><?= Html::encode($mobil->kondisi) ?></p>
                     <hr>
                     <div>
                         <button class="btn btn-dark w-100" onclick="" data-bs-toggle="modal" data-bs-target="#beliModal">
@@ -71,75 +77,6 @@ $this->title = 'Car Selling';
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card shadow rounded-4 border-0">
-                <div class="position-relative">
-                    <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top rounded-4" alt="">
-                    <div class="position-absolute bottom-0 start-0 px-3 py-2 bg-dark text-white rounded-end">
-                        <span class="badge bg-secondary">Rp500.000.000</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h5 class="card-title">Mercedes-Benz</h5>
-                        <p class="card-text fst-italic">Tahun 2020</p>
-                    </div>
-                    <p class="card-text mb-1 fst-italic">Bekas</p>
-                    <hr>
-                    <div>
-                        <button class="btn btn-dark w-100" onclick="" data-bs-toggle="modal" data-bs-target="#beliModal">
-                            Beli
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card shadow rounded-4 border-0">
-                <div class="position-relative">
-                    <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top rounded-4" alt="">
-                    <div class="position-absolute bottom-0 start-0 px-3 py-2 bg-dark text-white rounded-end">
-                        <span class="badge bg-secondary">Rp500.000.000</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h5 class="card-title">Mercedes-Benz</h5>
-                        <p class="card-text fst-italic">Tahun 2020</p>
-                    </div>
-                    <p class="card-text mb-1 fst-italic">Bekas</p>
-                    <hr>
-                    <div>
-                        <button class="btn btn-dark w-100" onclick="" data-bs-toggle="modal" data-bs-target="#beliModal">
-                            Beli
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card shadow rounded-4 border-0">
-                <div class="position-relative">
-                    <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top rounded-4" alt="">
-                    <div class="position-absolute bottom-0 start-0 px-3 py-2 bg-dark text-white rounded-end">
-                        <span class="badge bg-secondary">Rp500.000.000</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h5 class="card-title">Mercedes-Benz</h5>
-                        <p class="card-text fst-italic">Tahun 2020</p>
-                    </div>
-                    <p class="card-text mb-1 fst-italic">Bekas</p>
-                    <hr>
-                    <div>
-                        <button class="btn btn-dark w-100" onclick="" data-bs-toggle="modal" data-bs-target="#beliModal">
-                            Beli
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
-

@@ -9,7 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\RegisterForm;
-use app\models\ContactForm;
+use app\models\Mobil;
+
 
 class SiteController extends Controller
 {
@@ -62,7 +63,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $mobils = Mobil::find()->all();
+
+        return $this->render('index', [
+            'mobils' => $mobils,
+        ]);
     }
 
     /**
@@ -125,5 +130,5 @@ class SiteController extends Controller
         ]);
     }
 
-
+    
 }

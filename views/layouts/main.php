@@ -40,7 +40,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Display Cars', 'url' => ['/site/index']],
+            yii::$app->user->isGuest ? (
+                ['label' => 'Display Cars', 'url' => ['/site/index']]
+            ) : (
+                ['label' => 'Add Car', 'url' => ['/mobil/index']]
+            )
         ]
     ]);
     echo Nav::widget([
@@ -57,7 +61,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 '<li class="nav-item">'
                 . Html::beginForm(['/site/logout'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout as ' . Yii::$app->user->identity->username . '',
                     ['class' => 'nav-link btn btn-link logout']
                 )
                 . Html::endForm()
@@ -74,12 +78,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <?= $content ?>
 </main>
 
-<footer id="footer" class="mt-auto py-3 bg-light">
+<footer id="footer" class="mt-auto py-3 bg-dark">
     <div class="container">
-        <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
-        </div>
+            <div class="text-center text-light">&copy; Car Selling <?= date('Y') ?></div>
     </div>
 </footer>
 
