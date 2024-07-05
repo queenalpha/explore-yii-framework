@@ -11,8 +11,8 @@ use yii\behaviors\BlameableBehavior;
  * @property int $id
  * @property string $nama_mobil
  * @property string|null $kondisi
- * @property float|null $harga
- * @property string|null $tahun
+ * @property integer|null $harga
+ * @property integer|null $tahun
  *
  * @property User $user
  */
@@ -33,8 +33,7 @@ class Mobil extends \yii\db\ActiveRecord
     {
         return [
             [['nama_mobil'], 'required'],
-            [['harga'], 'number'],
-            [['tahun'], 'safe'],
+            [['harga', 'tahun'], 'integer'],
             [['nama_mobil'], 'string', 'max' => 100],
             [['kondisi'], 'string', 'max' => 50],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['id_user' => 'id']],

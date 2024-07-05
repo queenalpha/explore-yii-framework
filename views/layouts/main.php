@@ -36,45 +36,54 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top d-flex']
     ]);
+    
+    $menuItems = [
+        ['label' => 'Home', 'url' => ['/site/index']],
+    ];
+
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Display Cars', 'url' => ['/site/index']];
+    } else {
+        $menuItems[] = ['label' => 'Daftar Mobil', 'url' => ['/mobil/daftar-mobil']];
+        $menuItems[] = ['label' => 'Daftar Pembeli', 'url' => ['/mobil/daftar-pembeli']];
+    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            yii::$app->user->isGuest ? (
-                ['label' => 'Display Cars', 'url' => ['/site/index']]
-            ) : (
-                ['label' => 'Add Car', 'url' => ['/mobil/index']]
-            )
-        ]
+        'items' => $menuItems,
     ]);
+
+    $rightMenu = [];
+
+    if (Yii::$app->user->isGuest) {
+        $rightMenu[] = ['label' => 'Register', 'url' => ['/site/register']];
+        $rightMenu[] = ['label' => 'Login', 'url' => ['/site/login']];
+    } else {
+        $rightMenu[] = '<li class="nav-item">'
+            . Html::beginForm(['/site/logout'])
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'nav-link btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+    }
+
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav ms-auto '],
-        'items' => [
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Register', 'url' => ['/site/register']]
-            ) : (
-                ''
-            ),
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li class="nav-item">'
-                . Html::beginForm(['/site/logout'])
-                . Html::submitButton(
-                    'Logout as ' . Yii::$app->user->identity->username . '',
-                    ['class' => 'nav-link btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ]
+        'options' => ['class' => 'navbar-nav ms-auto'],
+        'items' => $rightMenu,
     ]);
+
     NavBar::end();
     ?>
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">
-        <?= Alert::widget() ?>
+        <?= Alert::widget([
+            'options' => [
+                'class' => 'mt-2'
+            ],
+        ]) ?>
         <?= $content ?>
 </main>
 

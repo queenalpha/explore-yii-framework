@@ -25,14 +25,14 @@ class MobilController extends Controller
         ];
     }
 
-    public function actionIndex()
+    public function actionDaftarMobil()
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Mobil::find(),
         ]);
 
 
-        return $this->render('index', [
+        return $this->render('daftar-mobil', [
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -96,7 +96,7 @@ class MobilController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['daftar-mobil']);
     }
 
     /**

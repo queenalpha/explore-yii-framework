@@ -59,7 +59,8 @@ $this->title = 'Car Selling';
                 <div class="position-relative">
                     <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top rounded-4" alt="">
                     <div class="position-absolute bottom-0 start-0 px-3 py-2 bg-dark text-white rounded-end">
-                        <span class="badge bg-secondary">Rp<?= Html::encode($mobil->harga) ?></span>
+                        <span class="badge bg-secondary">Rp<?= Yii::$app->formatter->asDecimal($mobil->harga, 0) ?>
+                        </span>
                     </div>
                 </div>
                 <div class="card-body">

@@ -25,7 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nama_mobil',
             'kondisi',
-            'harga',
+            [
+                'attribute' => 'harga',
+                'value' => function($model) {
+                    return Yii::$app->formatter->asDecimal($model->harga, 0);
+                },
+            ],
             'tahun',
             ['class' => 'yii\grid\ActionColumn'],
         ],

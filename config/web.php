@@ -41,6 +41,11 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+        'class' => 'yii\i18n\Formatter',
+        'locale' => 'id-ID',
+        'currencyCode' => 'IDR',
+        ],
         'db' => $db,
         
         // 'urlManager' => [
